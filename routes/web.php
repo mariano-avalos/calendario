@@ -19,19 +19,25 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route:: group(['middleware'=>['auth']], function (){
+Route::group(['middleware' => ['auth']], function(){
 
+
+Route::get('/confirmacion', [App\Http\Controllers\ConfirmacionController::class, 'index']);
+
+});
 Route::get('/evento', [App\Http\Controllers\EventoController::class, 'index']);
 
 Route::post('/evento/mostrar', [App\Http\Controllers\EventoController::class, 'show']);
 
 Route::post('/evento/agregar', [App\Http\Controllers\EventoController::class, 'store']); //envia,rececpciona y pasa info a BD
+Route::post('/confirmacion/agregar', [App\Http\Controllers\ConfirmacionController::class, 'store']);
+
 
 Route::post('/evento/editar/{id}', [App\Http\Controllers\EventoController::class, 'edit']);
+
 
 Route::post('/evento/actualizar/{evento}', [App\Http\Controllers\EventoController::class, 'update']);
 
 Route::post('/evento/borrar/{id}', [App\Http\Controllers\EventoController::class, 'destroy']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-});
